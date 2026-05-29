@@ -1,0 +1,15 @@
+{
+  "name": "arkivlog",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Inmutable audit logs on Arkiv with SDK, dashboard and AI agent",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "sdk:build": "pnpm --filter arkivlog build",
+    "smoke": "pnpm --filter web smoke"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
