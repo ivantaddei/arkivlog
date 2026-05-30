@@ -8,6 +8,7 @@
 - Idioma: **español argentino neutro**
 - Audiencia: jurado técnico
 - Formato: **16:9**, dark mode
+- **El deck es self-contained**: el demo va aparte en un video pre-grabado. Las slides cuentan la historia sin depender de que algo corra en vivo.
 
 ---
 
@@ -84,19 +85,20 @@
 
 ---
 
-## Slide 5 — Demo en vivo
+## Slide 5 — Cómo funciona (arquitectura)
 
-**Anchor visual:** 4 capturas/mocks en fila horizontal mostrando el flow.
+**Anchor visual:** diagrama horizontal de 4 nodos conectados con flechas. Esta slide reemplaza la demo en vivo — cuenta el flow sin mostrar pantallas.
 
-- **Título:** _"Demo: concesionaria con asistente IA."_
-- **Pasos:**
-  1. Usuario chatea con el agente Vertex.
-  2. Agente invoca `searchInventory()` (badge `🔧`).
-  3. SDK dispara `record()` en background.
-  4. Dashboard muestra la entidad on-chain con link al explorer de Arkiv Braga.
-- **Footer pequeño:** _"Cada tool-call del demo se ve aparecer en tiempo real en el dashboard."_
+- **Título:** _"Del tool-call al registro inmutable, en una request."_
+- **Diagrama (4 cajas en fila):**
+  1. **Agente IA** — invoca un tool (`searchInventory`, `processPayment`, etc.)
+  2. **SDK ArkivLog** — captura `eventType`, `actor`, `severity`, `metadata`
+  3. **API Route** — firma con wallet del backend, crea la entidad
+  4. **Arkiv Braga** — entidad on-chain · `$creator` backend · `$owner` usuario
+- **Línea de retorno (abajo):** Dashboard ← lee entidades por `owner` o `creator` ← Arkiv
+- **Footer pequeño:** _"Video demo del flow completo: [URL]"_
 
-**Notas:** si no llegamos a 4 screenshots reales, usar mocks limpios. El paso 4 (link al explorer) es el que vende inmutabilidad — destacarlo.
+**Notas:** las 4 cajas deben tener iconos consistentes y la flecha final (paso 4) resaltada en violeta Arkiv — es donde ocurre la inmutabilidad.
 
 ---
 
@@ -115,6 +117,7 @@
   - 📦 SDK público en [npmjs.com/package/arkivlog](https://www.npmjs.com/package/arkivlog)
   - 🖥️ Dashboard SaaS deployado
   - 🤖 Demo agente IA funcionando end-to-end
+  - 🎥 Video demo del flow completo
   - 📚 README + arquitectura documentada
 
 ---
@@ -134,7 +137,7 @@
 
 ## Guion hablado de 90 segundos (borrador)
 
-> _Editable. Pensado para acompañar las slides — no leer literal._
+> _Editable. Pensado para acompañar las slides — no leer literal. El demo está en video aparte; el guion del deck no depende de mostrar pantallas en vivo._
 
 **[0:00 – 0:10] Slide 1 — Hook**
 "Hola, soy Ivan. Les muestro **ArkivLog**: auditoría inmutable para agentes IA. Cada acción de tu agente, firmada on-chain."
@@ -148,8 +151,8 @@
 **[0:40 – 1:00] Slide 4 — Las 3 garantías**
 "Tres cosas que solo Arkiv te da: uno, el creator es la wallet del backend, imposible de falsificar. Dos, el owner es la wallet del usuario, él controla la retención y puede ejercer derecho al olvido. Tres, retención diferenciada por severidad — un evento crítico vive un año, uno informativo siete días."
 
-**[1:00 – 1:20] Slide 5 — Demo**
-"Mirá el demo: un asistente IA de una concesionaria. El usuario pregunta por autos, el agente llama a `searchInventory`, el SDK lo registra, y en tiempo real aparece en el dashboard con link al explorer de Arkiv."
+**[1:00 – 1:20] Slide 5 — Arquitectura**
+"El flow es directo: el agente invoca un tool, el SDK lo captura, la API route lo firma con la wallet del backend y crea una entidad en Arkiv Braga. Desde ese momento es inmutable. El dashboard lee las entidades por owner. Hay un video corto con el flujo end-to-end."
 
 **[1:20 – 1:30] Slide 7 — Cierre**
 "La auditoría inmutable no es una feature, es la arquitectura. SDK público en npm hoy. Gracias."
@@ -158,10 +161,10 @@
 
 ## TODOs antes de finalizar el deck
 
-- [ ] Reemplazar `#` placeholders por URL real de Vercel (slides 5, 7)
-- [ ] Capturas reales del flow demo (slide 5) — necesita el deploy live primero
-- [ ] Logo de ArkivLog (si llegamos a diseñar uno)
+- [ ] Reemplazar `#` placeholders por URL real de Vercel (slide 7) y URL del video demo (slide 5)
+- [ ] Diagrama de arquitectura (slide 5) — 4 cajas + flecha de retorno al dashboard
 - [ ] Mock del diagrama "log mutable tachado" (slide 2)
+- [ ] Logo de ArkivLog (si llegamos a diseñar uno)
 - [ ] Ajustar guion al cronómetro real una vez ensayado
 
 ---
@@ -173,7 +176,7 @@
 ````
 Armá un pitch deck de 7 slides para ArkivLog (hackathon ARKIV × PunaTech 2026, track AI provenance & audit, pitch en español de 90 segundos, formato 16:9 dark mode).
 
-El contenido exacto de cada slide y el estilo visual están en este documento de referencia — usalo verbatim, no inventes copy nuevo.
+El contenido exacto de cada slide y el estilo visual están en este documento de referencia — usalo verbatim, no inventes copy nuevo. El deck es self-contained: el demo va en video aparte, no hay que dejar espacio para screenshots en vivo.
 
 [Pegar aquí el contenido de las slides 1-7 más la sección "Estilo visual"]
 

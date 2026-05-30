@@ -90,6 +90,21 @@ LLM agents act in the world: they search, they query DBs, they schedule, they pa
 
 ---
 
+## Live on Arkiv Braga — example transactions
+
+Real entities written by ArkivLog to the Braga testnet. Click the entity key to open the block explorer.
+
+| Entity | Type | `$creator` | `$owner` | Block | Link |
+|---|---|---|---|---|---|
+| `0x787d8bba…6a0f81` | Project | `0x8274…a838` | `0x8274…a838` | `1049395` | [open in explorer](https://explorer.braga.hoodi.arkiv.network/entity/0x787d8bbac91c8b151946dbf7002f2cdd8eb064c16590a82f8cd9406c766a0f81) |
+| `0xb0d4b89c…10c3e0` | AuditEvent · `TOOL_INVOKED` · `searchInventory` · `LOW` | `0x8274…a838` | `0x8274…a838` | `1050514` | [open in explorer](https://explorer.braga.hoodi.arkiv.network/entity/0xb0d4b89c4088cabcabe6ed24dcd8db05adc54efd02d652693a11ee674210c3e0) |
+
+That second row is a real tool-call from the demo: the Vertex agent invoked `searchInventory({ onlyAvailable: true })` and the SDK fired `record()`. The full payload (5 vehicles returned by the tool) is in the entity's `payload`, the indexed `attrs` carry `actor`, `eventType`, `severity`, `timestamp`, and `projectKey` (FK to the Project entity above). `$creator` is the ArkivLog service wallet — immutable. `$owner` is the end-user wallet, who can drop the entity at any time.
+
+To list every entity written under the `arkivlog-punatech26-v1` namespace yourself, run `pnpm list` from the repo root.
+
+---
+
 ## Architecture
 
 ```
