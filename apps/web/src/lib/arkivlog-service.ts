@@ -103,7 +103,7 @@ export async function recordAuditEvent(
   ];
 
   const { entityKey, txHash } = await wallet.createEntity({
-    payload: jsonToPayload(payload as Record<string, unknown>),
+    payload: jsonToPayload(payload as unknown as Record<string, unknown>),
     contentType: "application/json",
     attributes,
     expiresIn: RETENTION[input.severity],
