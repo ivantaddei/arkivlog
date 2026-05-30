@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+
+# Workspaces — Vercel builds from this app's directory, doesn't need siblings.
+../../packages
+../../apps/web
+
+# Local data
+*.log
