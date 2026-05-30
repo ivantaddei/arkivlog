@@ -12,7 +12,7 @@
     "@ai-sdk/google-vertex": "^4.0.140",
     "@ai-sdk/react": "^3.0.195",
     "ai": "^6.0.193",
-    "arkivlog": "^0.1.0",
+    "arkivlog": "workspace:*",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",

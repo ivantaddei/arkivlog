@@ -1,6 +1,6 @@
 {
   "name": "arkivlog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Inmutable audit logs on Arkiv — TypeScript SDK",
   "license": "MIT",
   "type": "module",
@@ -9,7 +9,6 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     }
@@ -35,6 +34,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts --format esm --dts --watch",
+    "prepare": "pnpm build",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
