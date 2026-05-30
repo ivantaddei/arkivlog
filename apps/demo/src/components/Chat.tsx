@@ -1,7 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport, type UIMessage, type UIMessagePart } from "ai";
+import { DefaultChatTransport, type UIMessage } from "ai";
 import { useMemo, useRef, useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -12,13 +12,18 @@ interface TextPart {
   state?: "streaming" | "done";
 }
 
-function isTextPart(p: UIMessagePart<never, never>): p is UIMessagePart<never, never> & TextPart {
-  return (p as { type: string }).type === "text";
+// We don't lean on the SDK's UIMessagePart generic union here — across
+// @ai-sdk versions the type identity drifts (same name, different module
+// paths) and breaks strict-mode builds. A structural check by `type` does
+// the job and is stable across versions.
+type AnyPart = { type: string; [k: string]: unknown };
+
+function isTextPart(p: AnyPart): p is AnyPart & TextPart {
+  return p.type === "text";
 }
 
-function isToolPart(p: UIMessagePart<never, never>) {
-  const type = (p as { type: string }).type;
-  return typeof type === "string" && type.startsWith("tool-");
+function isToolPart(p: AnyPart) {
+  return typeof p.type === "string" && p.type.startsWith("tool-");
 }
 
 function toolName(p: { type: string }) {
@@ -201,7 +206,8 @@ function Message({
             : "bg-zinc-100 text-zinc-900"
         }`}
       >
-        {message.parts.map((part, i) => {
+        {message.parts.map((rawPart, i) => {
+          const part = rawPart as unknown as AnyPart;
           if (isTextPart(part)) {
             if (isUser) {
               return (
