@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import crypto from "node:crypto";
+import { getDemoConfig, isDemoMode } from "./demo-mode";
 
 const COOKIE_NAME = "arkivlog_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24; // 24h
@@ -69,6 +70,9 @@ export async function signSession(address: `0x${string}`): Promise<string> {
 }
 
 export async function readSessionAddress(): Promise<`0x${string}` | null> {
+  if (isDemoMode()) {
+    return getDemoConfig().wallet;
+  }
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;

@@ -8,6 +8,7 @@ import {
   PROJECT_EXPIRATION,
   getWalletArkiv,
 } from "./arkiv";
+import { getDemoConfig, isDemoMode } from "./demo-mode";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "keys.json");
@@ -119,6 +120,19 @@ export async function findByWallet(
 export async function findByApiKey(
   apiKey: string,
 ): Promise<KeyRecord | null> {
+  if (isDemoMode()) {
+    const demo = getDemoConfig();
+    if (apiKey === demo.apiKey) {
+      return {
+        wallet: demo.wallet,
+        apiKey: demo.apiKey,
+        projectKey: demo.projectKey,
+        projectName: demo.projectName,
+        createdAt: 0,
+      };
+    }
+    return null;
+  }
   const store = await load();
   return store.records.find((r) => r.apiKey === apiKey) ?? null;
 }

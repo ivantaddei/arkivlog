@@ -1,6 +1,7 @@
 "use client";
 
 import { useSiwe } from "@/lib/use-siwe";
+import { isDemoMode } from "@/lib/demo-mode";
 
 function short(addr?: string | null) {
   if (!addr) return "";
@@ -9,6 +10,14 @@ function short(addr?: string | null) {
 
 export function ConnectWallet() {
   const { me, meLoading, signIn, signOut, busy, error } = useSiwe();
+
+  if (isDemoMode()) {
+    return (
+      <span className="rounded-md border border-violet-800/60 bg-violet-950/40 px-3 py-1 text-xs font-medium text-violet-200">
+        DEMO MODE
+      </span>
+    );
+  }
 
   if (meLoading) {
     return <span className="text-sm text-zinc-500">…</span>;

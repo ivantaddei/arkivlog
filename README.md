@@ -143,7 +143,6 @@ arkivlog/
 │   └── demo/         Next.js — Concesionaria Demo with Vertex agent (port 3200)
 ├── packages/
 │   └── sdk/          arkivlog — TypeScript SDK published as `arkivlog`
-├── .agents/skills/   arkiv-best-practices skill (installed via npx)
 └── README.md
 ```
 
