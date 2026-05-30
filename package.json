@@ -10,7 +10,7 @@
     "smoke": "pnpm --filter web smoke",
     "list": "pnpm --filter web run list"
   },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=20"
   }
