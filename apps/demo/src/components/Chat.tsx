@@ -6,12 +6,19 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-function isTextPart(p: UIMessagePart<never, never>): p is { type: "text"; text: string; state?: "streaming" | "done" } {
-  return p.type === "text";
+interface TextPart {
+  type: "text";
+  text: string;
+  state?: "streaming" | "done";
+}
+
+function isTextPart(p: UIMessagePart<never, never>): p is UIMessagePart<never, never> & TextPart {
+  return (p as { type: string }).type === "text";
 }
 
 function isToolPart(p: UIMessagePart<never, never>) {
-  return typeof p.type === "string" && p.type.startsWith("tool-");
+  const type = (p as { type: string }).type;
+  return typeof type === "string" && type.startsWith("tool-");
 }
 
 function toolName(p: { type: string }) {
