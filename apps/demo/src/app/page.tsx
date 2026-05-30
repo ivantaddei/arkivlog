@@ -1,5 +1,6 @@
 import { Chat } from "@/components/Chat";
 import { SetupBanner } from "@/components/SetupBanner";
+import { ARKIVLOG_DASHBOARD_URL } from "@/lib/dashboard-url";
 import { getDemoConfigStatus } from "@/lib/server-config";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +24,7 @@ export default function HomePage() {
             </div>
           </div>
           <a
-            href="http://localhost:3100/dashboard"
+            href={ARKIVLOG_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={`text-xs rounded-md border px-3 py-1.5 ${
@@ -72,7 +73,7 @@ export default function HomePage() {
               <li>
                 Auditá el trail completo en el{" "}
                 <a
-                  href="http://localhost:3100/dashboard"
+                  href={ARKIVLOG_DASHBOARD_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-emerald-700 hover:text-emerald-900"

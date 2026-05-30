@@ -1,3 +1,5 @@
+import { ARKIVLOG_DASHBOARD_URL } from "@/lib/dashboard-url";
+
 interface Props {
   arkivLog: boolean;
   vertex: boolean;
@@ -23,7 +25,7 @@ export function SetupBanner({ arkivLog, vertex }: Props) {
             <strong>NINGÚN tool call va a quedar registrado</strong> on-chain.
             Generá una key haciendo Sign-In en{" "}
             <a
-              href="http://localhost:3100/dashboard"
+              href={ARKIVLOG_DASHBOARD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"

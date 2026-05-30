@@ -5,6 +5,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { useMemo, useRef, useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { ARKIVLOG_DASHBOARD_URL } from "@/lib/dashboard-url";
 
 interface TextPart {
   type: "text";
@@ -105,7 +106,7 @@ function ChatInner({
           </div>
         </div>
         <a
-          href="http://localhost:3100/dashboard"
+          href={ARKIVLOG_DASHBOARD_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs text-emerald-700 hover:text-emerald-900 inline-flex items-center gap-1"
