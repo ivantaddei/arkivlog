@@ -19,7 +19,7 @@ export interface ArkivLogger {
   record(event: AuditEventInput): void;
 }
 
-const DEFAULT_ENDPOINT = "http://localhost:3000/api/logs";
+const DEFAULT_ENDPOINT = "http://localhost:3100/api/logs";
 
 export function init(config: ArkivLogConfig): ArkivLogger {
   const endpoint = config.endpoint ?? DEFAULT_ENDPOINT;

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ArkivLog — Inmutable AI audit trail",
-  description:
-    "ArkivLog stores tamper-proof AI provenance logs on Arkiv testnet.",
+  title: "Concesionaria Demo — Asistente IA",
+  description: "Demo de concesionaria con asistente IA auditado por ArkivLog.",
 };
 
 export default function RootLayout({
@@ -29,8 +27,8 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
-        <Providers>{children}</Providers>
+      <body className="h-full flex flex-col overflow-hidden bg-zinc-50 text-zinc-900">
+        {children}
       </body>
     </html>
   );

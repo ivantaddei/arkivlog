@@ -10,3 +10,9 @@ dist
 *.log
 coverage
 .vercel
+
+# Local SaaS data (apiKey ↔ wallet mapping)
+apps/web/data/
+
+# Local agent skills / context
+.ai/

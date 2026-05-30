@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3100",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start -p 3100",
+    "lint": "eslint",
+    "smoke": "tsx --env-file=.env scripts/smoke.ts",
+    "list": "tsx --env-file=.env scripts/list.ts",
+    "sdk-smoke": "tsx --env-file=.env scripts/sdk-smoke.ts"
   },
   "dependencies": {
     "@arkiv-network/sdk": "0.6.8",
+    "@tanstack/react-query": "^5.100.14",
+    "jose": "^6.2.3",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "siwe": "^3.0.0",
+    "viem": "^2.51.3",
+    "wagmi": "^3.6.16"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -22,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
+    "tsx": "^4.22.3",
     "typescript": "^5"
   }
 }
